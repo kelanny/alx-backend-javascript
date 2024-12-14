@@ -1,11 +1,12 @@
-process.stdout.write("Welcome to ALX, what is your name?\n");
+process.stdout.write('Welcome to ALX, what is your name?\n');
 
-process.stdin.on('data', (input) => {
-    const name = input.toString().trim();
-    process.stdout.write(`Your name is: ${name}\n`);
+process.stdin.on('readable', () => {
+    const data = process.stdin.read();
+    if (data) {
+        process.stdout.write(`Your name is: ${data}`);
+    }
 });
 
-// Always trigger the end event when the input stream is closed
 process.stdin.on('end', () => {
     process.stdout.write("This important software is now closing\n");
 });
